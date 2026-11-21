@@ -1,0 +1,50 @@
+# Publica uma nova versão do app do tablet (Leitor de Discursos, Android).
+# O APK chega num ramo temporário "publicar-android"; este fluxo confere o SHA-256,
+# cria a versão em Releases SEM marcá-la como "mais recente" (a "mais recente" continua
+# sendo o programa do PC, usada pela atualização automática dele) e apaga o ramo.
+name: Publicar app do tablet
+
+on:
+  push:
+    branches: [publicar-android]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publicar-android
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar arquivos da versão
+        uses: actions/checkout@v4
+        with:
+          ref: publicar-android
+
+      - name: Conferir o APK
+        run: |
+          set -euo pipefail
+          VERSAO="$(tr -d '[:space:]' < android/versao.txt)"
+          [[ "$VERSAO" =~ ^[0-9]+\.[0-9]+(\.[0-9]+)?$ ]] || { echo "versão inválida"; exit 1; }
+          APK="Leitor-de-Discursos-$VERSAO.apk"
+          (cd android && sha256sum -c "$APK.sha256")
+          echo "VERSAO=$VERSAO" >> "$GITHUB_ENV"
+          echo "APK=$APK" >> "$GITHUB_ENV"
+
+      - name: Criar a versão em Releases (sem marcar como a mais recente)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          ARQUIVOS=("android/$APK" "android/$APK.sha256")
+          [ -f "android/Leitor-de-Discursos-$VERSAO-codigo-fonte.zip" ] && ARQUIVOS+=("android/Leitor-de-Discursos-$VERSAO-codigo-fonte.zip")
+          gh release create "android-v$VERSAO" --repo "$GITHUB_REPOSITORY" \
+            --title "Leitor de Discursos (tablet Android) $VERSAO" --notes-file android/notas.md \
+            --target "$GITHUB_SHA" --latest=false "${ARQUIVOS[@]}"
+
+      - name: Apagar o ramo temporário
+        if: always()
+        run: git push origin --delete publicar-android || true
