@@ -1,0 +1,33 @@
+.ref-body { position: relative; flex: 1; overflow: auto; background: #fff; min-height: 0; }
+.ref-empty { color: #59636e; padding: 20px 22px; font-size: 13.5px; line-height: 1.5; }
+.ref-empty ul { padding-left: 18px; }
+.ref-pdf { width: 100%; height: 100%; border: 0; display: block; }
+.ref-doc {
+  padding: 22px 26px 60px;
+  font-family: Arial, sans-serif; font-size: 14.5px; line-height: 1.55; color: #1b1b1b;
+  user-select: text;
+}
+.ref-doc h1, .ref-doc h2 { font-size: 1.3em; margin: 0 0 .8em; color: #222; }
+.ref-doc h2.titulo { white-space: pre-wrap; }
+.ref-doc h3 { font-size: 1em; margin: 1.4em 0 .5em; color: #2b579a; letter-spacing: .02em; }
+.ref-doc h4 { font-size: .95em; margin: 1em 0 .4em; color: #6a4bb5; }
+.ref-doc p { margin: .35em 0; }
+.ref-doc p.ind0 { margin-top: .8em; font-weight: 600; }
+.ref-doc p.ind1 { margin-left: 26px; }
+.ref-doc p.ind2 { margin-left: 52px; }
+.ref-doc p.ind3 { margin-left: 78px; }
+.ref-doc p.ind4 { margin-left: 104px; }
+.ref-doc p.ind5, .ref-doc p.ind6 { margin-left: 130px; }
+.ref-doc p.nota { background: #fff8e1; border-left: 3px solid #f0b400; padding: 6px 10px; font-size: .92em; }
+.ref-doc p.tempo, .ref-doc p.copy { color: #777; font-size: .85em; }
+.ref-doc img { max-width: 100%; height: auto; }
+.ref-doc a.noteref { color: #1a56db; }
+.bref { color: #1a7f37; border-bottom: 1px dotted #1a7f37; cursor: pointer; }
+.bref:hover { background: #e9f7ee; }
+.ref-pop {
+  position: absolute; z-index: 50; width: 370px; max-width: calc(100% - 16px);
+  background: #fff; border: 1px solid #d0d7de; border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,.18);
+  font-family: "Segoe UI", system-ui, sans-serif; font-size: 13px; line-height: 1.5;
+}
+.ref-pop-head { font-weight: 600; padding: 8px 12px; border-bottom: 1px solid #eee; color: #1a7f37; }
+.ref-pop-body { padding: 8px 12px 10px; white-space: pre-line; max-height: 260px; overflow: auto; user-select: text; }

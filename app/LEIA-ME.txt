@@ -1,0 +1,75 @@
+CRIADOR DE EPUB
+===============
+
+Instalar: dê dois cliques em "Instalar-Criador-de-EPUB-x.x.x.exe" (não pede senha de administrador).
+Cria atalhos na Área de Trabalho e no Menu Iniciar. Para atualizar, rode o instalador novo por cima.
+Para distribuir já configurado com o Google: deixe o google-oauth.json na mesma pasta do instalador.
+(Versão sem instalar: dê dois cliques em "Criador de EPUB.exe" dentro da pasta.)
+(Na primeira vez o Windows pode mostrar "O Windows protegeu o computador":
+ clique em "Mais informações" > "Executar assim mesmo".)
+
+ANOTAÇÕES
+- Selecione o texto (ex.: "Isaías 25:8"), clique com o BOTÃO DIREITO > "Adicionar anotação".
+- Também pelo botão "Anotação" da barra ou Ctrl+Alt+N.
+- Botão direito em cima de uma anotação: Editar / Remover.
+- No EPUB, o texto vira um link para a nota na seção "Notas" no final, com ↩ para voltar.
+
+TEXTOS BÍBLICOS (Tradução do Novo Mundo — edição de estudo, jw.org)
+- Escreva a referência normalmente, ex.: "Mateus 24:14", "João 5:28, 29", "Lucas 7:11-17",
+  "1 Coríntios 15:26", "Sal. 83:18". Ao continuar digitando, a anotação é criada sozinha
+  com o texto do versículo (sem os * e + do site). Precisa de internet.
+- Botão "Textos bíblicos" na barra:
+  · Detectar textos bíblicos no documento todo (útil para texto colado);
+  · Atualizar todas as anotações bíblicas (anotações escritas à mão não são alteradas);
+  · Atualizar texto da anotação selecionada;
+  · Ligar/desligar a criação automática e os números dos versículos.
+- Selecionar uma referência > botão direito > Adicionar anotação também já preenche o texto.
+
+BASE PARA COMPARAÇÃO (esboço ao lado do texto)
+- Botão "📑 Base para comparação" no topo abre um painel ao lado do editor.
+- "Abrir arquivo": Word (.docx, ex.: esboço S-34), PDF, EPUB ou TXT.
+- "Colar": copie o texto (ex.: no JW Library) e clique em Colar.
+- "Janela separada": mostra a base numa janela própria (bom para segundo monitor).
+- "wol.jw.org": abre a Biblioteca On-line numa janela.
+- Arraste a divisória para mudar a largura. Clique numa referência bíblica
+  sublinhada em verde para ver o versículo.
+- O painel é só leitura e não entra no EPUB. A última base aberta fica guardada.
+- Arquivos .jwpub não podem ser abertos (são protegidos e só abrem no JW Library).
+
+BIBLIOTECA E CATEGORIAS
+- Ao abrir o app aparece "Meus EPUBs", separado por categorias:
+  Discursos Públicos, Tesouros da Palavra de Deus e Outros (crie mais em "＋ Nova categoria").
+- Cada EPUB tem: Abrir, 📁 Mover (troca de categoria) e 🗑 Excluir. Dá para buscar pelo título.
+- "Salvar EPUB" na primeira vez pede o TÍTULO e a CATEGORIA. Depois, Ctrl+S salva direto no mesmo lugar.
+  "Salvar como…" pede de novo (cria uma cópia). "Salvar em outro lugar…" grava fora da biblioteca.
+- No computador, os EPUBs ficam em Documentos\Criador de EPUB\<Categoria>\.
+- "Abrir EPUB" (topo) volta para a biblioteca. "Abrir arquivo EPUB…" abre qualquer EPUB do computador.
+
+GOOGLE DRIVE (cada pessoa com a própria conta)
+- Botão "Entrar com Google" (canto superior direito): já vem configurado, é só entrar com a conta.
+- Na biblioteca e na janela Salvar você escolhe: ☁ Google Drive ou 💻 Este computador.
+- No Drive, os EPUBs ficam na pasta "Criador de EPUB", com uma subpasta para cada categoria
+  (é assim que o app do tablet encontra os arquivos).
+- Para trocar de pessoa: clique no e-mail > "Sair da conta".
+- O app só tem acesso aos arquivos que ele mesmo criou no Drive.
+
+CORRETOR
+- Palavra sublinhada em vermelho: botão direito mostra as sugestões e "Adicionar ao dicionário".
+
+IMAGENS
+- Botão de imagem na barra (ou arraste/cole a imagem no texto).
+- Clique na imagem: botões 25% 33% 50% 75% 100% e alinhamento; ou arraste os cantos.
+- Botão direito na imagem: Tamanho da imagem / Propriedades.
+
+ATUALIZAÇÕES
+- O app verifica novas versões ao abrir. Quando houver, aparece "Nova versão disponível":
+  clique em "Atualizar agora" — ele baixa, fecha, instala e abre de novo sozinho.
+- Botão ⓘ (canto superior direito): mostra a versão e "Verificar atualizações".
+- As versões ficam em https://github.com/guigon96-glitch/EpubJWAssistent/releases
+
+OUTROS
+- Botão "📝 Painel" (ou » no painel) esconde/mostra o painel de anotações para dar espaço ao editor.
+- Título 1/2/3 montam o sumário do livro automaticamente.
+- "Propriedades do livro": título, autor, capa, idioma.
+- "Abrir EPUB" abre um EPUB existente para editar.
+- Ctrl+S salva. Há rascunho automático caso o app feche sem salvar.

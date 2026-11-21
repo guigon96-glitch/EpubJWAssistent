@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b6fc2"/><stop offset="1" stop-color="#1f4a8a"/></linearGradient>
+  </defs>
+  <rect x="8" y="8" width="240" height="240" rx="54" fill="url(#bg)"/>
+  <!-- livro aberto -->
+  <path d="M128 78 C104 62 74 58 46 62 V184 C74 180 104 184 128 200 Z" fill="#ffffff"/>
+  <path d="M128 78 C152 62 182 58 210 62 V184 C182 180 152 184 128 200 Z" fill="#e8f0ff"/>
+  <path d="M128 78 V200" stroke="#1f4a8a" stroke-width="4"/>
+  <!-- linhas de texto -->
+  <g stroke="#9db5dc" stroke-width="7" stroke-linecap="round">
+    <path d="M66 92 C84 90 100 93 112 98"/><path d="M66 114 C84 112 100 115 112 120"/><path d="M66 136 C84 134 100 137 112 142"/>
+  </g>
+  <!-- marcador de anotação -->
+  <circle cx="176" cy="122" r="26" fill="#f0b400"/>
+  <path d="M166 122 h20 M176 112 v20" stroke="#fff" stroke-width="7" stroke-linecap="round"/>
+</svg>

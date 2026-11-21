@@ -1,0 +1,22 @@
+{
+  "name": "criador-epub",
+  "version": "1.8.1",
+  "description": "Editor para criar livros EPUB com anotações",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-packager . \"Criador de EPUB\" --platform=win32 --arch=x64 --out=dist --overwrite --asar --ignore=^/dist"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jszip": "^3.10.2",
+    "mammoth": "^1.13.0",
+    "tinymce": "^7.9.3"
+  },
+  "devDependencies": {
+    "@electron/packager": "^20.3.0",
+    "electron": "^38.8.6"
+  },
+  "productName": "Criador de EPUB"
+}

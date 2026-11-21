@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>Base para comparação</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' data: blob:; img-src 'self' data: blob:;">
+  <link rel="stylesheet" href="ref.css">
+  <style>
+    html, body { margin: 0; height: 100%; }
+    body { display: flex; flex-direction: column; background: #fff; font-family: "Segoe UI", system-ui, sans-serif; }
+  </style>
+</head>
+<body>
+  <div id="refBody" class="ref-body"></div>
+  <script src="bible.js"></script>
+  <script src="ref-view.js"></script>
+  <script>
+    window.__bibleFetch = (url) => window.api.bibleFetch(url);
+    const body = document.getElementById('refBody');
+    RefView.attach(body);
+    RefView.render(body, null);
+    window.api.onRefContent((c) => {
+      document.title = (c && c.title ? c.title + ' — ' : '') + 'Base para comparação';
+      RefView.render(body, c);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>Criador de EPUB</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' data: blob:; img-src 'self' data: blob: https: http:;">
+  <link rel="stylesheet" href="app.css">
+  <link rel="stylesheet" href="ref.css">
+  <script src="../node_modules/tinymce/tinymce.min.js"></script>
+  <script src="../node_modules/jszip/dist/jszip.min.js"></script>
+  <script src="../node_modules/mammoth/mammoth.browser.min.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">📖 Criador de EPUB</div>
+    <button id="btnNovo" title="Novo livro (Ctrl+N)">🗋 Novo</button>
+    <button id="btnAbrir" title="Abrir um EPUB existente para editar (Ctrl+O)">📂 Abrir EPUB</button>
+    <button id="btnSalvar" class="primary" title="Salvar EPUB (Ctrl+S)">💾 Salvar EPUB</button>
+    <button id="btnSalvarComo" title="Salvar como… (Ctrl+Shift+S)">Salvar como…</button>
+    <span class="sep"></span>
+    <button id="btnBase" title="Abrir um documento de base (esboço .docx, PDF…) ao lado do texto">📑 Base para comparação</button>
+    <button id="btnPainel" title="Mostrar/esconder o painel de anotações e sumário">📝 Painel</button>
+    <button id="btnPropriedades" title="Título, autor, capa…">⚙ Propriedades do livro</button>
+    <span class="grow"></span>
+    <span id="status" class="status"></span>
+    <div id="conta" class="conta"></div>
+    <button id="btnSobre" class="btn-sobre" title="Versão e atualizações">ⓘ</button>
+  </header>
+
+  <main class="layout">
+    <section class="editor-wrap">
+      <textarea id="editor"></textarea>
+    </section>
+
+    <div id="refSplitter" class="splitter hidden" title="Arraste para ajustar a largura"></div>
+    <section id="refPane" class="refpane hidden">
+      <div class="ref-toolbar">
+        <span id="refTitle" class="ref-title">Base para comparação</span>
+        <button id="refAbrir" title="Abrir .docx, PDF, EPUB ou TXT">📂 Abrir arquivo</button>
+        <button id="refColar" title="Colar o texto copiado (ex.: do JW Library)">📋 Colar</button>
+        <button id="refJanela" title="Mostrar numa janela separada (ex.: segundo monitor)">⧉ Janela separada</button>
+        <button id="refWol" title="Abrir a Biblioteca On-line (wol.jw.org) numa janela">🌐 wol.jw.org</button>
+        <button id="refFechar" class="icon" title="Fechar painel">✕</button>
+      </div>
+      <div id="refBody" class="ref-body"></div>
+    </section>
+
+    <aside class="sidebar">
+      <div class="tabs">
+        <button class="tab active" data-tab="notas">Anotações <span id="notaCount" class="badge">0</span></button>
+        <button class="tab" data-tab="sumario">Sumário</button>
+        <button id="btnFecharPainel" class="tab-close" title="Esconder painel (para ver de novo: botão 📝 Painel)">»</button>
+      </div>
+      <div class="tabpane active" id="tab-notas">
+        <p class="hint">Selecione um texto, clique com o <b>botão direito</b> e escolha <b>Adicionar anotação</b>. No EPUB, o texto vira um link para a nota no final do livro.</p>
+        <ol id="listaNotas" class="lista-notas"></ol>
+      </div>
+      <div class="tabpane" id="tab-sumario">
+        <p class="hint">Gerado a partir dos títulos (Título 1, 2 e 3). Clique para ir até o trecho.</p>
+        <ul id="listaSumario" class="lista-sumario"></ul>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Propriedades do livro -->
+  <div id="modalProps" class="modal hidden">
+    <div class="modal-box">
+      <h2>Propriedades do livro</h2>
+      <div class="props-grid">
+        <div class="props-fields">
+          <label>Título<input id="pTitulo" type="text"></label>
+          <label>Autor<input id="pAutor" type="text"></label>
+          <label>Editora (opcional)<input id="pEditora" type="text"></label>
+          <label>Idioma
+            <select id="pIdioma">
+              <option value="pt-BR">Português (Brasil)</option>
+              <option value="pt-PT">Português (Portugal)</option>
+              <option value="en">Inglês</option>
+              <option value="es">Espanhol</option>
+            </select>
+          </label>
+          <label>Descrição (opcional)<textarea id="pDescricao" rows="3"></textarea></label>
+          <label>Título da seção de notas<input id="pTituloNotas" type="text"></label>
+        </div>
+        <div class="props-capa">
+          <div class="capa-label">Capa</div>
+          <div id="capaPreview" class="capa-preview"><span>Sem capa</span></div>
+          <button id="btnCapa">Escolher imagem…</button>
+          <button id="btnRemoverCapa" class="link">Remover capa</button>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button id="btnPropsCancelar">Cancelar</button>
+        <button id="btnPropsOk" class="primary">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Biblioteca -->
+  <div id="biblioteca" class="biblioteca hidden">
+    <div class="bib-box">
+      <header class="bib-head">
+        <h2>📚 Meus EPUBs</h2>
+        <div id="bibFonte" class="bib-fonte"></div>
+        <input id="bibBusca" type="search" placeholder="🔎 Buscar pelo título…">
+        <button id="bibNovo" class="primary">＋ Novo EPUB</button>
+        <button id="bibFechar" class="icon" title="Fechar a biblioteca">✕</button>
+      </header>
+      <div class="bib-corpo">
+        <nav class="bib-cats">
+          <ul id="bibCats"></ul>
+          <button id="bibNovaCat" class="bib-novacat">＋ Nova categoria</button>
+        </nav>
+        <section class="bib-lista">
+          <div id="bibAviso" class="bib-aviso hidden"></div>
+          <ul id="bibArquivos"></ul>
+        </section>
+      </div>
+      <footer class="bib-pe">
+        <span id="bibOnde" class="bib-onde"></span>
+        <button id="bibAbrirArquivo">📂 Abrir arquivo EPUB…</button>
+        <button id="bibAtualizar">↻ Atualizar</button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Salvar: título + categoria -->
+  <div id="modalSalvar" class="modal hidden">
+    <div class="modal-box salvar-box">
+      <h2>💾 Salvar EPUB</h2>
+      <label class="s-campo">Título<input id="sTitulo" type="text" placeholder="Ex.: Nº 132 Ressurreição — A vitória sobre a morte!"></label>
+      <div id="sOndeWrap" class="s-onde"></div>
+      <div class="s-label">Categoria</div>
+      <div id="sCats" class="s-cats"></div>
+      <div class="s-nova"><input id="sNovaCat" type="text" placeholder="Nova categoria…"><button id="sCriarCat">＋ Criar</button></div>
+      <div id="sErro" class="s-erro"></div>
+      <div class="modal-actions">
+        <button id="sOutro" class="left" title="Salvar o arquivo em qualquer pasta do computador, fora da biblioteca">Salvar em outro lugar…</button>
+        <button id="sCancelar">Cancelar</button>
+        <button id="sOk" class="primary">Salvar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Conta Google -->
+  <div id="modalConta" class="modal hidden">
+    <div class="modal-box conta-box">
+      <div id="contaConteudo"></div>
+      <div id="contaAcoes" class="modal-actions"></div>
+    </div>
+  </div>
+
+  <input id="fileCapa" type="file" accept="image/*" hidden>
+  <input id="fileImagem" type="file" accept="image/*" hidden>
+
+  <script src="epub.js"></script>
+  <script src="bible.js"></script>
+  <script src="ref-view.js"></script>
+  <script src="renderer.js"></script>
+</body>
+</html>

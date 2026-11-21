@@ -1,0 +1,61 @@
+COMO LIGAR O "ENTRAR COM GOOGLE" (fazer só uma vez, ~15 minutos)
+==================================================================
+
+Por que isso é preciso: o Google só deixa um programa acessar o Google Drive das pessoas se
+o programa estiver registrado no Google Cloud. É gratuito. Quem registra é o "dono" do app (você).
+Depois disso, qualquer pessoa entra com a PRÓPRIA conta e vê só os PRÓPRIOS arquivos.
+
+(Os nomes dos menus podem variar um pouco; o Google muda o painel de vez em quando.)
+
+1) CRIAR O PROJETO
+   - Acesse https://console.cloud.google.com e entre com a sua conta Google.
+   - No topo, clique no seletor de projetos > "Novo projeto".
+   - Nome: Criador de EPUB > Criar. Confira se o projeto novo está selecionado no topo.
+
+2) LIGAR A API DO GOOGLE DRIVE
+   - Menu (☰) > "APIs e serviços" > "Biblioteca".
+   - Pesquise "Google Drive API" > clique nela > "Ativar".
+
+3) TELA DE LOGIN (Google Auth Platform / "Tela de consentimento OAuth")
+   - Menu (☰) > "APIs e serviços" > "Tela de consentimento OAuth" (ou "Google Auth Platform") > "Começar".
+   - Nome do app: Criador de EPUB
+   - E-mail de suporte: o seu e-mail
+   - Público-alvo: EXTERNO
+   - Dados de contato: o seu e-mail > aceite os termos > Criar.
+
+4) PERMISSÕES ("Acesso a dados" / "Escopos")
+   - "Adicionar ou remover escopos" e marque:
+       .../auth/drive.file   (Ver, editar e excluir apenas os arquivos do Google Drive usados com este app)
+       openid, .../auth/userinfo.email, .../auth/userinfo.profile
+   - Salvar.
+   IMPORTANTE: NÃO marque o escopo do Drive inteiro (".../auth/drive"). O "drive.file" é o mais
+   restrito: o app só enxerga os arquivos que ele mesmo criou.
+
+5) QUEM PODE USAR ("Público-alvo")
+   - Enquanto estiver "Em teste": em "Usuários de teste" > "Adicionar usuários" e coloque o e-mail
+     de cada pessoa que vai usar (até 100). Nesse modo o login vence a cada 7 dias.
+   - Para liberar para qualquer pessoa e o login não vencer: "Publicar app" (Em produção).
+     Como o app só usa o escopo restrito "drive.file", normalmente não é preciso análise do Google.
+     Se o Google pedir verificação, me avise.
+
+6) CRIAR A CHAVE DO APP PARA PC ("Clientes" / "Credenciais")
+   - "Clientes" > "Criar cliente" (ou: Credenciais > Criar credenciais > ID do cliente OAuth).
+   - Tipo de aplicativo: "App para computador" (Desktop app). Nome: Criador de EPUB PC > Criar.
+   - Na janela que aparece, clique em "Baixar JSON".
+
+7) COLOCAR NO APP
+   - Renomeie o arquivo baixado para:  google-oauth.json
+   - Coloque-o na pasta do programa, ao lado do "Criador de EPUB.exe".
+     (Assim, quando você passar a pasta para outra pessoa, já vai configurado.)
+   - Ou: no app, clique em "Entrar com Google" > "Escolher arquivo JSON…".
+
+8) PRONTO
+   - Clique em "Entrar com Google", escolha a conta e PERMITA o acesso ao Google Drive
+     (se aparecer uma caixinha de seleção do Drive, marque-a).
+   - "Salvar EPUB" pergunta se é no Google Drive ou no computador.
+   - "Abrir EPUB" mostra a lista dos seus EPUBs no Drive (pasta "Criador de EPUB").
+   - Para trocar de pessoa: clique no e-mail no canto superior direito > "Sair da conta".
+
+Observação: o conteúdo do JSON não é uma senha pessoal sua; o Google trata essa chave de apps
+de computador como pública. Mesmo assim, não precisa postar em lugares públicos.
+O app do tablet (Android) vai usar este MESMO projeto — vamos criar outro "cliente", tipo Android, depois.

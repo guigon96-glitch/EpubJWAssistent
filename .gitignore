@@ -1,0 +1,4 @@
+node_modules/
+dist/
+# segredo do OAuth: o GitHub bloqueia; peça o JSON ao usuário numa sessão nova
+app/google-oauth.json

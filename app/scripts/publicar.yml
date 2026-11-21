@@ -1,0 +1,47 @@
+# Publica uma nova versão do Criador de EPUB.
+# O instalador chega (dividido em partes) num ramo temporário "publicar";
+# este fluxo junta as partes, confere o SHA-256, cria a versão em Releases e apaga o ramo.
+name: Publicar versão
+
+on:
+  push:
+    branches: [publicar]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publicar
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar arquivos da versão
+        uses: actions/checkout@v4
+        with:
+          ref: publicar
+
+      - name: Montar e conferir o instalador
+        run: |
+          set -euo pipefail
+          VERSAO="$(tr -d '[:space:]' < versao.txt)"
+          [[ "$VERSAO" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "versão inválida"; exit 1; }
+          INST="Instalar-Criador-de-EPUB-$VERSAO.exe"
+          cat partes/"$INST".part-* > "$INST"
+          sha256sum -c "$INST.sha256"
+          echo "VERSAO=$VERSAO" >> "$GITHUB_ENV"
+          echo "INST=$INST" >> "$GITHUB_ENV"
+
+      - name: Criar a versão em Releases
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "v$VERSAO" --repo "$GITHUB_REPOSITORY" \
+            --title "Criador de EPUB $VERSAO" --notes-file notas.md --target main \
+            "$INST" "$INST.sha256"
+
+      - name: Apagar o ramo temporário
+        if: always()
+        run: git push origin --delete publicar || true
