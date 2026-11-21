@@ -1,0 +1,7 @@
+entrega/
+assinatura/
+*.jks
+keystore.properties
+local.properties
+.gradle/
+build/

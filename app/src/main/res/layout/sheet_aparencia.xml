@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="24dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="32dp">
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical" android:orientation="horizontal">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Aparência" android:textAppearance="?attr/textAppearanceHeadlineSmall" />
+            <com.google.android.material.button.MaterialButton android:id="@+id/btnRestaurar" style="@style/Widget.Material3.Button.TextButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Restaurar padrão" />
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton android:id="@+id/btnApresentacao" style="@style/Widget.Material3.Button.TonalButton"
+            android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="Modo apresentação" />
+
+        <TextView style="@style/PainelRotulo" android:text="Tema" />
+        <LinearLayout android:id="@+id/temasBox" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+
+        <com.google.android.material.button.MaterialButton android:id="@+id/btnCor" style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="Cor personalizada…" />
+
+        <com.google.android.material.materialswitch.MaterialSwitch android:id="@+id/swSistema" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="4dp" android:text="Seguir o modo escuro do sistema" />
+
+        <TextView style="@style/PainelRotulo" android:text="Balão da anotação" />
+        <com.google.android.material.chip.ChipGroup android:id="@+id/cgNota" android:layout_width="match_parent" android:layout_height="wrap_content" app:singleSelection="true" app:selectionRequired="true">
+            <com.google.android.material.chip.Chip android:id="@+id/nCentro" style="@style/PainelChip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="No centro" />
+            <com.google.android.material.chip.Chip android:id="@+id/nBaixo" style="@style/PainelChip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Embaixo" />
+            <com.google.android.material.chip.Chip android:id="@+id/nMovel" style="@style/PainelChip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Móvel (arrastar)" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <TextView style="@style/PainelRotulo" android:text="Cor das anotações" />
+        <com.google.android.material.chip.ChipGroup android:id="@+id/cgNotaCor" android:layout_width="match_parent" android:layout_height="wrap_content" app:singleSelection="true" app:selectionRequired="true">
+            <com.google.android.material.chip.Chip android:id="@+id/ncTema" style="@style/PainelChip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Do tema" />
+            <com.google.android.material.chip.Chip android:id="@+id/ncVermelho" style="@style/PainelChip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Vermelho" />
+            <com.google.android.material.chip.Chip android:id="@+id/ncAzul" style="@style/PainelChip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Azul" />
+            <com.google.android.material.chip.Chip android:id="@+id/ncVerde" style="@style/PainelChip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Verde" />
+            <com.google.android.material.chip.Chip android:id="@+id/ncRoxo" style="@style/PainelChip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Roxo" />
+            <com.google.android.material.chip.Chip android:id="@+id/ncLaranja" style="@style/PainelChip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Laranja" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <TextView style="@style/PainelRotulo" android:text="Destaque das anotações" />
+        <com.google.android.material.chip.ChipGroup android:id="@+id/cgNotaEstilo" android:layout_width="match_parent" android:layout_height="wrap_content" app:singleSelection="true" app:selectionRequired="true">
+            <com.google.android.material.chip.Chip android:id="@+id/neTracejado" style="@style/PainelChip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pontilhado" />
+            <com.google.android.material.chip.Chip android:id="@+id/neSublinhado" style="@style/PainelChip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sublinhado" />
+            <com.google.android.material.chip.Chip android:id="@+id/neFundo" style="@style/PainelChip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Fundo colorido" />
+            <com.google.android.material.chip.Chip android:id="@+id/neNegrito" style="@style/PainelChip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Negrito" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="14dp" android:orientation="horizontal">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Tamanho da letra" android:textAppearance="?attr/textAppearanceTitleSmall" />
+            <TextView android:id="@+id/tvTamanho" style="@style/PainelValor" />
+        </LinearLayout>
+        <com.google.android.material.slider.Slider android:id="@+id/slTamanho" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:valueFrom="80" android:valueTo="300" android:stepSize="5" android:value="80" app:labelBehavior="gone" />
+
+        <TextView style="@style/PainelRotulo" android:text="Fonte" />
+        <com.google.android.material.chip.ChipGroup android:id="@+id/cgFonte" android:layout_width="match_parent" android:layout_height="wrap_content" app:singleSelection="true" app:selectionRequired="true">
+            <com.google.android.material.chip.Chip android:id="@+id/fOriginal" style="@style/PainelChip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Original do livro" />
+            <com.google.android.material.chip.Chip android:id="@+id/fSerif" style="@style/PainelChip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Serifada" />
+            <com.google.android.material.chip.Chip android:id="@+id/fSans" style="@style/PainelChip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sem serifa" />
+            <com.google.android.material.chip.Chip android:id="@+id/fFacil" style="@style/PainelChip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Leitura fácil" />
+            <com.google.android.material.chip.Chip android:id="@+id/fMono" style="@style/PainelChip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Monoespaçada" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="14dp" android:orientation="horizontal">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Margens laterais" android:textAppearance="?attr/textAppearanceTitleSmall" />
+            <TextView android:id="@+id/tvMargemLat" style="@style/PainelValor" />
+        </LinearLayout>
+        <com.google.android.material.slider.Slider android:id="@+id/slMargemLat" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:valueFrom="0" android:valueTo="15" android:stepSize="1" android:value="0" app:labelBehavior="gone" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="14dp" android:orientation="horizontal">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Margens em cima e embaixo" android:textAppearance="?attr/textAppearanceTitleSmall" />
+            <TextView android:id="@+id/tvMargemVert" style="@style/PainelValor" />
+        </LinearLayout>
+        <com.google.android.material.slider.Slider android:id="@+id/slMargemVert" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:valueFrom="0" android:valueTo="15" android:stepSize="1" android:value="0" app:labelBehavior="gone" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="14dp" android:orientation="horizontal">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Espaço entre linhas" android:textAppearance="?attr/textAppearanceTitleSmall" />
+            <TextView android:id="@+id/tvLinhas" style="@style/PainelValor" />
+        </LinearLayout>
+        <com.google.android.material.slider.Slider android:id="@+id/slLinhas" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:valueFrom="12" android:valueTo="24" android:stepSize="1" android:value="12" app:labelBehavior="gone" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="14dp" android:orientation="horizontal">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Espaço entre letras" android:textAppearance="?attr/textAppearanceTitleSmall" />
+            <TextView android:id="@+id/tvLetras" style="@style/PainelValor" />
+        </LinearLayout>
+        <com.google.android.material.slider.Slider android:id="@+id/slLetras" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:valueFrom="-2" android:valueTo="15" android:stepSize="1" android:value="-2" app:labelBehavior="gone" />
+
+        <TextView style="@style/PainelRotulo" android:text="Espaço entre parágrafos" />
+        <com.google.android.material.chip.ChipGroup android:id="@+id/cgParagrafo" android:layout_width="match_parent" android:layout_height="wrap_content" app:singleSelection="true" app:selectionRequired="true">
+            <com.google.android.material.chip.Chip android:id="@+id/pOriginal" style="@style/PainelChip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Original" />
+            <com.google.android.material.chip.Chip android:id="@+id/pNenhum" style="@style/PainelChip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Nenhum" />
+            <com.google.android.material.chip.Chip android:id="@+id/pPequeno" style="@style/PainelChip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pequeno" />
+            <com.google.android.material.chip.Chip android:id="@+id/pMedio" style="@style/PainelChip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Médio" />
+            <com.google.android.material.chip.Chip android:id="@+id/pGrande" style="@style/PainelChip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Grande" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <TextView style="@style/PainelRotulo" android:text="Recuo da primeira linha" />
+        <com.google.android.material.chip.ChipGroup android:id="@+id/cgRecuo" android:layout_width="match_parent" android:layout_height="wrap_content" app:singleSelection="true" app:selectionRequired="true">
+            <com.google.android.material.chip.Chip android:id="@+id/rOriginal" style="@style/PainelChip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Original" />
+            <com.google.android.material.chip.Chip android:id="@+id/rNenhum" style="@style/PainelChip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sem recuo" />
+            <com.google.android.material.chip.Chip android:id="@+id/rPequeno" style="@style/PainelChip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pequeno" />
+            <com.google.android.material.chip.Chip android:id="@+id/rGrande" style="@style/PainelChip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Grande" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <TextView style="@style/PainelRotulo" android:text="Alinhamento" />
+        <com.google.android.material.chip.ChipGroup android:id="@+id/cgAlinhamento" android:layout_width="match_parent" android:layout_height="wrap_content" app:singleSelection="true" app:selectionRequired="true">
+            <com.google.android.material.chip.Chip android:id="@+id/aOriginal" style="@style/PainelChip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Original" />
+            <com.google.android.material.chip.Chip android:id="@+id/aJustificado" style="@style/PainelChip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Justificado" />
+            <com.google.android.material.chip.Chip android:id="@+id/aEsquerda" style="@style/PainelChip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="À esquerda" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="14dp" android:orientation="horizontal">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Brilho (só no leitor)" android:textAppearance="?attr/textAppearanceTitleSmall" />
+            <TextView android:id="@+id/tvBrilho" style="@style/PainelValor" />
+        </LinearLayout>
+        <com.google.android.material.slider.Slider android:id="@+id/slBrilho" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:valueFrom="2" android:valueTo="100" android:stepSize="1" android:value="2" app:labelBehavior="gone" />
+        <CheckBox android:id="@+id/cbBrilhoAuto" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Automático (brilho do sistema)" />
+
+        <com.google.android.material.materialswitch.MaterialSwitch android:id="@+id/swTelaLigada" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" android:text="Manter a tela ligada durante a leitura" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

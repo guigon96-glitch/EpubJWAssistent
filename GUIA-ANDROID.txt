@@ -1,0 +1,169 @@
+LEITOR DE DISCURSOS — GUIA DO APP PARA TABLET (ANDROID)
+=======================================================
+
+O app mostra, no tablet, os discursos (EPUB) que o programa "Criador de EPUB" do computador
+salvou no Google Drive (pasta "Criador de EPUB"). Cada pessoa entra com a própria conta
+Google e vê só os próprios arquivos. Depois de baixados, eles abrem mesmo sem internet.
+
+Você vai precisar de 2 dados (já estão também no arquivo SENHAS-DA-CHAVE.txt):
+  Nome do pacote: com.criadordeepub.leitor
+  SHA-1:          24:AC:79:99:7C:14:C1:2B:22:57:6C:90:45:D7:15:DE:03:68:75:9F
+
+
+PARTE 1 — GOOGLE CLOUD (uma vez só, no computador)
+--------------------------------------------------
+Use o MESMO projeto do Google Cloud que você criou para o programa do computador.
+(Precisa ser o mesmo projeto: é isso que permite ao tablet enxergar os arquivos que o
+computador criou.)
+
+ 1. Abra https://console.cloud.google.com e confira, no alto da página, se o projeto
+    selecionado é o do Criador de EPUB.
+ 2. No menu, vá em "APIs e serviços" > "Credenciais" (ou "Google Auth Platform" > "Clientes").
+ 3. Clique em "Criar credenciais" > "ID do cliente OAuth" (ou "Criar cliente").
+ 4. Em "Tipo de aplicativo", escolha "Android".
+ 5. Nome: Leitor Android (qualquer nome serve).
+ 6. Nome do pacote: com.criadordeepub.leitor
+ 7. Impressão digital do certificado SHA-1:
+       24:AC:79:99:7C:14:C1:2B:22:57:6C:90:45:D7:15:DE:03:68:75:9F
+ 8. Clique em "Criar". Não precisa copiar nada: o app Android não usa "ID do cliente"
+    nem "chave secreta" (o Google reconhece o app pelo nome do pacote + SHA-1).
+ 9. NÃO apague nem altere o cliente "App para computador": o programa do PC continua
+    usando ele.
+10. Usuários de teste: se a tela de consentimento estiver em modo "Teste", cada pessoa
+    que for usar o app precisa estar na lista de usuários de teste
+    ("Google Auth Platform" > "Público-alvo" > "Usuários de teste"). É a mesma lista
+    usada pelo programa do computador.
+
+Observação: depois de criar o cliente Android, o Google pode levar alguns minutos
+(às vezes até algumas horas) para reconhecer o app. Se o login der "erro 10" logo
+após criar, espere um pouco e tente de novo.
+
+
+PARTE 2 — INSTALAR O APP NO TABLET
+----------------------------------
+O app não está na Play Store, então ele é instalado pelo arquivo APK.
+
+ 1. Leve o arquivo "LeitorDeDiscursos-1.0.apk" para o tablet. O jeito mais fácil:
+    envie o APK para o seu Google Drive pelo computador e, no tablet, abra o app
+    "Drive", toque no arquivo e escolha "Baixar". (Também funciona por e-mail ou
+    WhatsApp enviado para você mesmo.)
+ 2. No tablet, abra o arquivo baixado (pelo app "Arquivos"/"Downloads" ou pela
+    notificação de download).
+ 3. O Android vai avisar que a instalação de apps desconhecidos está bloqueada.
+    Toque em "Configurações" e ative "Permitir desta fonte" para o app que você usou
+    para abrir o arquivo (ex.: Drive, Arquivos ou Chrome). Volte e toque em "Instalar".
+ 4. Se aparecer um aviso do "Play Protect" dizendo que o app é desconhecido, toque em
+    "Mais detalhes" > "Instalar mesmo assim". Isso acontece com qualquer app que
+    não vem da Play Store.
+ 5. Depois de instalar, você pode desligar de novo a opção "Permitir desta fonte".
+
+Para ATUALIZAR (da 1.4 em diante, use o botão "Atualizar app"; para chegar à 1.4): basta instalar o APK novo por cima (os discursos baixados e
+as posições de leitura são mantidos), desde que o APK novo seja assinado com a mesma
+chave (leitor-discursos.jks).
+
+
+PARTE 3 — USAR O APP
+--------------------
+ • Abra "Leitor de Discursos" e toque em "Entrar com Google". Escolha a conta e
+   permita o acesso. O app só consegue ver os arquivos criados pelo Criador de EPUB,
+   nunca o resto do seu Drive.
+
+ TELA INICIAL
+ • Os discursos aparecem separados em ABAS, uma por categoria (as mesmas do programa
+   do computador): "Discursos Públicos", "Tesouros da Palavra de Deus", "Outros" e
+   depois as categorias que você criar, em ordem alfabética. O número entre
+   parênteses é a quantidade de discursos na aba.
+ • Em cada aba, os mais recentes ficam em cima. Cada item mostra a data da última
+   alteração e se já está no tablet (✓ Disponível offline).
+ • A lupa no alto busca pelo título em todas as categorias (não precisa de acento).
+ • Puxe a lista para baixo para atualizar. Se você salvar de novo, renomear ou mudar
+   um discurso de categoria no computador, o tablet acompanha na próxima atualização.
+ • EPUBs antigos que estavam soltos na pasta "Criador de EPUB" aparecem em "Outros".
+ • Menu (⋮) > "Nova categoria": cria uma categoria (subpasta) no seu Drive; ela
+   também aparece no programa do computador.
+
+ LEITOR (botões na barra de cima)
+ • Sumário (lista), Buscar (lupa), Cronômetro (relógio), "A−" e "A+" (tamanho da letra).
+ • "Aa" abre o painel de APARÊNCIA. As mudanças aparecem na hora, no próprio texto
+   acima do painel, e ficam guardadas no tablet:
+     - Tema: Claros (Branco, Creme, Sépia, Cinza-claro, Verde-suave, Azul-suave),
+       Texturas (Papiro, Pergaminho, Papel antigo, Papel reciclado, Linho) e
+       Escuros (Noite, Grafite, Sépia-escuro). Também há "Cor personalizada…",
+       para escolher a cor do fundo e do texto.
+     - "Seguir o modo escuro do sistema": usa o seu tema escuro preferido quando o
+       tablet estiver no modo escuro e o claro no resto do tempo.
+     - Tamanho da letra, fonte (Original do livro, Serifada, Sem serifa,
+       Leitura fácil e Monoespaçada), margens, espaço entre linhas, entre letras e
+       entre parágrafos, recuo da primeira linha e alinhamento (justificado etc.).
+     - Brilho da tela (só no leitor) e "Manter a tela ligada".
+     - "Restaurar padrão" volta tudo ao início.
+     - "Modo apresentação": letra grande, tela cheia, tela sempre ligada e o
+       cronômetro à vista. Ele tem um tamanho de letra próprio (ajuste no "Aa" ou
+       com A−/A+ enquanto estiver no modo). Para sair, toque no texto para a barra
+       aparecer, abra "Aa" e toque em "Sair do modo apresentação".
+ • Toque numa anotação (sublinhada com pontinhos) para ver a nota num balão, sem sair
+   do lugar. O título do balão é o texto que você tocou (ex.: "Isaías 25:8"). O balão
+   segue as cores do tema. Toque fora, no "×" ou em "Voltar" para fechar.
+   No painel "Aa" > "Balão da anotação" você escolhe onde ele aparece:
+     - No centro (padrão);
+     - Embaixo;
+     - Móvel (arrastar): segure a barra de título do balão (⠿) e arraste para onde
+       quiser. Ele reabre no mesmo lugar enquanto o discurso estiver aberto.
+ • A barra de cima acompanha a cor do tema escolhido.
+
+ MARCAR O TEXTO (para destacar trechos durante o discurso)
+ • Toque e segure numa palavra e arraste as alças para escolher o trecho. Aparece uma
+   barra com:
+     - marca-texto em 6 cores (amarelo, verde, azul, rosa, laranja, roxo);
+     - cor da letra (A vermelho, azul, verde, roxo);
+     - B = negrito, S = sublinhado, 🗑 = remover.
+ • Toque numa marcação para mudar a cor ou removê-la. Tocar de novo na mesma cor tira
+   aquela cor.
+ • Botão "Marcações" (na barra de cima, ícone de lâmpada/caneta): lista tudo o que foi
+   marcado no discurso. Toque para ir até o trecho; toque e segure para apagar; ou
+   "Apagar todas".
+ • As marcações ficam só neste tablet, para esta conta, e NÃO mudam o arquivo do
+   discurso. Se o discurso for alterado e salvo de novo no computador, as marcações
+   são reencontradas no texto novo. Se um trecho marcado for apagado ou reescrito, a
+   lista mostra "(não encontrada nesta versão)".
+ • No painel "Aa" também dá para mudar a COR das anotações (do tema, vermelho, azul,
+   verde, roxo, laranja) e o DESTAQUE delas (pontilhado, sublinhado, fundo colorido
+   ou negrito) — vale para todas as anotações de todos os discursos.
+ • Cronômetro: toque no relógio para iniciar/pausar; toque e segure para zerar.
+ • Toque no texto para esconder ou mostrar a barra. O app lembra onde você parou em
+   cada discurso.
+
+ Quer um tema novo? Os temas ficam numa lista de configuração dentro do app. É só
+ pedir (ex.: "um tema verde-escuro" ou "uma textura de mármore") que eu acrescento
+ sem mexer no resto.
+
+ • Menu (⋮) > "Atualizar app": procura uma versão nova no GitHub. Se houver, mostra as
+   novidades e o botão "Baixar". Depois do download, toque em "Instalar" e confirme na
+   tela do Android. Na primeira vez o Android pede para permitir que o Leitor de
+   Discursos instale apps: ative "Permitir desta fonte" e volte. O app também verifica
+   sozinho uma vez por dia e avisa quando houver versão nova.
+ • Menu (⋮) > "Sair / trocar de conta": para outra pessoa entrar com a conta dela.
+   Você escolhe se mantém ou apaga os discursos baixados neste tablet.
+ • Menu (⋮) > "Abrir EPUB do tablet": abre um EPUB que esteja no próprio tablet
+   (por exemplo, um livro do Calibre). Ele aparece na aba "No tablet". Para tirá-lo
+   da lista, toque e segure nele.
+
+IMPORTANTE: só aparecem na lista os EPUBs que o programa do computador salvou no Drive.
+Um EPUB que você colocar na pasta "Criador de EPUB" à mão (arrastando no site do Drive)
+NÃO aparece, porque por segurança o app só tem permissão para os arquivos criados pelo
+próprio programa. Para esses, use "Abrir EPUB do tablet".
+
+
+SE ALGO DER ERRADO
+------------------
+ • "Erro 10" ao entrar: o cliente Android no Google Cloud não foi criado, está em outro
+   projeto, ou o nome do pacote / SHA-1 foi digitado errado. Confira a Parte 1.
+ • "Acesso bloqueado" / "app não verificado": adicione a conta em "Usuários de teste"
+   (Parte 1, passo 10). Na tela de aviso do Google, toque em "Continuar".
+ • Erro 403: confira se a "Google Drive API" está ativada no projeto.
+ • "Pasta 'Criador de EPUB' não encontrada": salve pelo menos um discurso no Drive
+   pelo programa do computador, usando a mesma conta, e puxe a lista para baixo.
+ • Pede para entrar de novo de tempos em tempos (por ex. toda semana): isso acontece
+   enquanto a tela de consentimento está em modo "Teste". Para evitar, em
+   "Público-alvo" clique em "Publicar app" (o escopo usado, drive.file, não exige a
+   verificação demorada do Google).

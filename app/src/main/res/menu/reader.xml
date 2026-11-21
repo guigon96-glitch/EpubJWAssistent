@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/action_toc" android:title="Sumário" android:icon="@drawable/ic_toc" app:showAsAction="always" />
+    <item android:id="@+id/action_marcas" android:title="Marcações" android:icon="@drawable/ic_marcas" app:showAsAction="always" />
+    <item android:id="@+id/action_search" android:title="Buscar" android:icon="@drawable/ic_search" app:showAsAction="always" />
+    <item android:id="@+id/action_timer" android:title="Cronômetro" android:icon="@drawable/ic_timer" app:showAsAction="always" />
+    <item android:id="@+id/action_smaller" android:title="A−" android:contentDescription="Diminuir letra" app:showAsAction="always" />
+    <item android:id="@+id/action_bigger" android:title="A+" android:contentDescription="Aumentar letra" app:showAsAction="always" />
+    <item android:id="@+id/action_aparencia" android:title="Aa" android:contentDescription="Aparência: tema, fonte, margens e espaçamentos" app:showAsAction="always|withText" />
+</menu>

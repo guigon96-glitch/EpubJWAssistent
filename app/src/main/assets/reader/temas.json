@@ -1,0 +1,63 @@
+{
+  "_ajuda": [
+    "Lista de temas do leitor. Para criar um tema novo, copie um bloco e mude o id (único), o nome e as cores.",
+    "grupo: Claros, Texturas ou Escuros (é o que aparece como título no painel Aa).",
+    "fundo/texto/link: cores da página, do texto e dos links/anotações. popupFundo/popupBorda: cores do balão da nota.",
+    "escuro: true para temas escuros (usado na opção 'Seguir modo escuro do sistema').",
+    "textura (opcional): desenhada por código (ruído SVG feTurbulence), sem imagens de terceiros.",
+    "  camadas: lista de ruídos sobrepostos. tipo: fractalNoise (manchas suaves) ou turbulence (grãos/fibras).",
+    "  freq: 'x y' — valores diferentes em x e y fazem fibras (ex.: '0.005 0.3' = fibras horizontais).",
+    "  oitavas: detalhes (1 a 5). cor: cor das manchas. opacidade: força (0 a 1). contraste: 1 = normal, maior = mais marcado.",
+    "  tamanho: tamanho do ladrilho em px. vinheta: escurecimento suave nas bordas (0 a 1)."
+  ],
+  "temas": [
+    { "id": "branco", "nome": "Branco", "grupo": "Claros", "escuro": false,
+      "fundo": "#FFFFFF", "texto": "#1B1B1B", "link": "#0B57D0", "popupFundo": "#FFFFFF", "popupBorda": "#C9C9C9" },
+    { "id": "creme", "nome": "Creme", "grupo": "Claros", "escuro": false,
+      "fundo": "#FBF6EA", "texto": "#2A2620", "link": "#1F55A5", "popupFundo": "#FFFDF6", "popupBorda": "#D9CFB8" },
+    { "id": "sepia", "nome": "Sépia", "grupo": "Claros", "escuro": false,
+      "fundo": "#F5ECD7", "texto": "#3A2E1F", "link": "#8A4B0F", "popupFundo": "#FBF5E6", "popupBorda": "#CDBB95" },
+    { "id": "cinza", "nome": "Cinza-claro", "grupo": "Claros", "escuro": false,
+      "fundo": "#ECEDEF", "texto": "#1E2124", "link": "#0B57D0", "popupFundo": "#F7F8F9", "popupBorda": "#C3C7CC" },
+    { "id": "verde", "nome": "Verde-suave", "grupo": "Claros", "escuro": false,
+      "fundo": "#E3EFE0", "texto": "#1D2A1C", "link": "#2D6A2A", "popupFundo": "#F1F8EF", "popupBorda": "#B6CDB1" },
+    { "id": "azul", "nome": "Azul-suave", "grupo": "Claros", "escuro": false,
+      "fundo": "#E4EDF6", "texto": "#1A2533", "link": "#1F55A5", "popupFundo": "#F2F7FC", "popupBorda": "#B4C7DC" },
+
+    { "id": "papiro", "nome": "Papiro", "grupo": "Texturas", "escuro": false,
+      "fundo": "#E7D4A2", "texto": "#22190C", "link": "#7A3B00", "popupFundo": "#F3E7C4", "popupBorda": "#B79E62",
+      "textura": { "tamanho": 320, "vinheta": 0.25, "camadas": [
+        { "tipo": "fractalNoise", "freq": "0.004 0.28", "oitavas": 3, "cor": "#7D5A1E", "opacidade": 0.30, "contraste": 2.2 },
+        { "tipo": "fractalNoise", "freq": "0.28 0.004", "oitavas": 2, "cor": "#7D5A1E", "opacidade": 0.16, "contraste": 2.0 },
+        { "tipo": "turbulence", "freq": "0.9", "oitavas": 1, "cor": "#5C4214", "opacidade": 0.06, "contraste": 1.0 } ] } },
+    { "id": "pergaminho", "nome": "Pergaminho", "grupo": "Texturas", "escuro": false,
+      "fundo": "#F1E2C3", "texto": "#2A1F10", "link": "#7A3B00", "popupFundo": "#F8EED8", "popupBorda": "#C9B084",
+      "textura": { "tamanho": 400, "vinheta": 0.35, "camadas": [
+        { "tipo": "fractalNoise", "freq": "0.010", "oitavas": 4, "cor": "#A57A35", "opacidade": 0.26, "contraste": 2.0 },
+        { "tipo": "fractalNoise", "freq": "0.8", "oitavas": 1, "cor": "#6B5025", "opacidade": 0.07, "contraste": 1.0 } ] } },
+    { "id": "papel-antigo", "nome": "Papel antigo", "grupo": "Texturas", "escuro": false,
+      "fundo": "#EADBB9", "texto": "#261C0E", "link": "#7A3B00", "popupFundo": "#F4EAD2", "popupBorda": "#C2A776",
+      "textura": { "tamanho": 360, "vinheta": 0.5, "camadas": [
+        { "tipo": "fractalNoise", "freq": "0.018", "oitavas": 5, "cor": "#94702F", "opacidade": 0.30, "contraste": 2.4 },
+        { "tipo": "turbulence", "freq": "0.06", "oitavas": 2, "cor": "#8A5A1C", "opacidade": 0.10, "contraste": 1.6 },
+        { "tipo": "fractalNoise", "freq": "0.75", "oitavas": 1, "cor": "#5A4320", "opacidade": 0.08, "contraste": 1.0 } ] } },
+    { "id": "reciclado", "nome": "Papel reciclado", "grupo": "Texturas", "escuro": false,
+      "fundo": "#E3DED2", "texto": "#1F1C17", "link": "#3B4F8C", "popupFundo": "#EFEBE2", "popupBorda": "#B9B2A2",
+      "textura": { "tamanho": 300, "vinheta": 0.0, "camadas": [
+        { "tipo": "turbulence", "freq": "0.55", "oitavas": 1, "cor": "#4F4A3F", "opacidade": 0.16, "contraste": 2.6 },
+        { "tipo": "fractalNoise", "freq": "0.03 0.2", "oitavas": 2, "cor": "#7F7765", "opacidade": 0.10, "contraste": 1.8 },
+        { "tipo": "fractalNoise", "freq": "0.02", "oitavas": 3, "cor": "#8C846F", "opacidade": 0.10, "contraste": 1.5 } ] } },
+    { "id": "linho", "nome": "Linho", "grupo": "Texturas", "escuro": false,
+      "fundo": "#ECE7DB", "texto": "#201D17", "link": "#3B4F8C", "popupFundo": "#F5F2EA", "popupBorda": "#BDB5A2",
+      "textura": { "tamanho": 240, "vinheta": 0.0, "camadas": [
+        { "tipo": "fractalNoise", "freq": "0.9 0.012", "oitavas": 2, "cor": "#7B735F", "opacidade": 0.18, "contraste": 2.0 },
+        { "tipo": "fractalNoise", "freq": "0.012 0.9", "oitavas": 2, "cor": "#7B735F", "opacidade": 0.18, "contraste": 2.0 } ] } },
+
+    { "id": "noite", "nome": "Noite", "grupo": "Escuros", "escuro": true,
+      "fundo": "#000000", "texto": "#D9D6D0", "link": "#8AB4F8", "popupFundo": "#161616", "popupBorda": "#3A3A3A" },
+    { "id": "grafite", "nome": "Grafite", "grupo": "Escuros", "escuro": true,
+      "fundo": "#202326", "texto": "#E3E1DC", "link": "#8AB4F8", "popupFundo": "#2C3034", "popupBorda": "#4A4F55" },
+    { "id": "sepia-escuro", "nome": "Sépia-escuro", "grupo": "Escuros", "escuro": true,
+      "fundo": "#2A2218", "texto": "#E8D9BC", "link": "#E0A85C", "popupFundo": "#362C20", "popupBorda": "#5C4B35" }
+  ]
+}

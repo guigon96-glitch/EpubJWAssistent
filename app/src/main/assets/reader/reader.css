@@ -1,0 +1,141 @@
+/* Estilos do leitor (aplicados depois do CSS do próprio EPUB).
+   As cores, fontes e medidas escolhidas no painel "Aa" são aplicadas pelo reader.js
+   num <style id="leitor-aparencia"> que sobrescreve estas regras. */
+
+@font-face { font-family: "Atkinson Hyperlegible"; font-style: normal; font-weight: 400; font-display: block;
+  src: url("fonts/atkinson-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Atkinson Hyperlegible"; font-style: italic; font-weight: 400; font-display: block;
+  src: url("fonts/atkinson-400-italic.woff2") format("woff2"); }
+@font-face { font-family: "Atkinson Hyperlegible"; font-style: normal; font-weight: 700; font-display: block;
+  src: url("fonts/atkinson-700-normal.woff2") format("woff2"); }
+@font-face { font-family: "Atkinson Hyperlegible"; font-style: italic; font-weight: 700; font-display: block;
+  src: url("fonts/atkinson-700-italic.woff2") format("woff2"); }
+
+:root {
+  --bg: #ffffff;
+  --fg: #1b1b1b;
+  --link: #0b57d0;
+  --panel-bg: #ffffff;
+  --panel-border: #c9c9c9;
+}
+
+/* A textura fica no <html> (canvas); o <body> é transparente para ela aparecer. */
+html { background-color: var(--bg) !important; -webkit-text-size-adjust: none; overflow-anchor: none; }
+body {
+  background: transparent !important;
+  color: var(--fg) !important;
+  margin: 0 !important;
+  padding: 28px max(5vw, 20px) 60vh !important;
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: none !important;
+  overflow-wrap: break-word;
+}
+#content { max-width: 1100px; margin: 0 auto; }
+#content img, #content svg { max-width: 100% !important; height: auto; }
+#content table { max-width: 100%; }
+#content h1, #content h2, #content h3 { line-height: 1.25; }
+#content .pagebreak { height: 1.5em; border: 0; }
+
+#leitor-vinheta {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none; display: none;
+}
+
+/* Links internos e chamadas de nota */
+#content a[href] { color: var(--link) !important; text-decoration: none; }
+#content a.leitor-nota-ref, #content a[epub\:type~="noteref"], #content a.noteref {
+  border-bottom: 2px dotted var(--link) !important;
+  padding: 0 1px;
+}
+#content a.leitor-nota-ativa { background: rgba(120, 160, 255, 0.25) !important; border-radius: 4px; }
+
+/* Balão da anotação */
+#leitor-nota-fundo {
+  position: fixed; inset: 0;
+  background: rgba(0, 0, 0, 0.28);
+  z-index: 2147483000;
+  display: none;
+}
+#leitor-nota-fundo.aberto { display: block; }
+#leitor-nota-fundo.leve { background: rgba(0, 0, 0, 0.08); }
+#leitor-nota {
+  position: fixed;
+  left: 0; right: 0; bottom: 3vh;
+  margin: 0 auto;
+  width: min(92vw, 900px);
+  box-sizing: border-box;
+  max-height: 58vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  background: var(--panel-bg);
+  color: var(--fg);
+  border: 1px solid var(--panel-border);
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  padding: 18px 22px 20px;
+  z-index: 2147483001;
+  display: none;
+  line-height: 1.55;
+  font-size: 1em;
+  text-align: left;
+  text-indent: 0;
+}
+#leitor-nota.aberto { display: block; }
+/* posição do balão: embaixo, no centro ou móvel (arrastável) */
+#leitor-nota.pos-centro, #leitor-nota.pos-movel { top: 50%; bottom: auto; transform: translateY(-50%); max-height: 70vh; }
+#leitor-nota.arrastado { transform: none; margin: 0; right: auto; bottom: auto; }
+#leitor-nota.arrastando { box-shadow: 0 16px 50px rgba(0, 0, 0, 0.45); user-select: none; }
+#leitor-nota .leitor-nota-alca { display: none; font-size: 1.3em; opacity: 0.5; margin-right: 10px; }
+#leitor-nota.pos-movel .leitor-nota-alca { display: inline; }
+#leitor-nota.pos-movel .leitor-nota-topo { cursor: move; touch-action: none; }
+#leitor-nota .leitor-nota-topo {
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: -18px;
+  background: var(--panel-bg);
+  margin: -18px -22px 8px; padding: 10px 12px 6px 22px;
+  border-bottom: 1px solid var(--panel-border);
+}
+#leitor-nota .leitor-nota-titulo { flex: 1; font-weight: bold; font-size: 0.95em; color: var(--link); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#leitor-nota .leitor-nota-fechar {
+  border: none; background: transparent; color: var(--fg);
+  font-size: 1.8em; line-height: 1; padding: 4px 12px; cursor: pointer;
+}
+#leitor-nota .leitor-nota-corpo p { margin: 0.4em 0; text-indent: 0 !important; }
+#leitor-nota .leitor-nota-corpo, #leitor-nota .leitor-nota-corpo * { color: var(--fg) !important; background: transparent !important; }
+#leitor-nota .leitor-nota-corpo a[href] { color: var(--link) !important; }
+
+/* ---------------- marcações ----------------
+   Marca-texto (fundo) translúcido: funciona em temas claros e escuros.
+   As cores da letra têm versão mais clara nos temas escuros (aplicada pelo reader.js). */
+#content .lm.lm-f-amarelo, #leitor-marcador .lm-f-amarelo { background-color: rgba(255, 214, 0, 0.45) !important; }
+#content .lm.lm-f-verde,   #leitor-marcador .lm-f-verde   { background-color: rgba(76, 217, 100, 0.40) !important; }
+#content .lm.lm-f-azul,    #leitor-marcador .lm-f-azul    { background-color: rgba(64, 156, 255, 0.38) !important; }
+#content .lm.lm-f-rosa,    #leitor-marcador .lm-f-rosa    { background-color: rgba(255, 94, 170, 0.38) !important; }
+#content .lm.lm-f-laranja, #leitor-marcador .lm-f-laranja { background-color: rgba(255, 149, 0, 0.42) !important; }
+#content .lm.lm-f-roxo,    #leitor-marcador .lm-f-roxo    { background-color: rgba(175, 82, 222, 0.38) !important; }
+#content .lm[class*="lm-f-"] { border-radius: 3px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+#content .lm.lm-c-vermelho, #leitor-marcador .lm-c-vermelho { color: #C62828 !important; }
+#content .lm.lm-c-azul,     #leitor-marcador .lm-c-azul     { color: #1565C0 !important; }
+#content .lm.lm-c-verde,    #leitor-marcador .lm-c-verde    { color: #2E7D32 !important; }
+#content .lm.lm-c-roxo,     #leitor-marcador .lm-c-roxo     { color: #6A1B9A !important; }
+#content .lm.lm-b { font-weight: 700 !important; }
+#content .lm.lm-s { text-decoration: underline !important; text-decoration-thickness: 2px !important; text-underline-offset: 3px; }
+#content .lm { cursor: pointer; }
+#content .lm.lm-piscar { outline: 3px solid var(--link); outline-offset: 2px; border-radius: 3px; }
+
+/* barra flutuante para marcar o texto selecionado */
+#leitor-marcador {
+  position: fixed; z-index: 2147483002; display: none;
+  background: var(--panel-bg); border: 1px solid var(--panel-border); border-radius: 14px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3); padding: 8px 10px;
+  font-family: Roboto, Arial, sans-serif; line-height: 1;
+}
+#leitor-marcador.aberto { display: block; }
+#leitor-marcador .lmk-linha { display: flex; gap: 8px; align-items: center; }
+#leitor-marcador .lmk-linha + .lmk-linha { margin-top: 8px; }
+#leitor-marcador button {
+  width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--panel-border);
+  font-size: 20px; padding: 0; color: var(--fg); background: transparent; cursor: pointer;
+}
+#leitor-marcador button.lmk-c { font-weight: 700; font-family: Georgia, serif; }
+#leitor-marcador button.lmk-x { border-color: transparent; }

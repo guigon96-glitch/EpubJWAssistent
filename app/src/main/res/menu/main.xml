@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/action_search" android:title="Buscar por título" android:icon="@drawable/ic_search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView" app:showAsAction="always|collapseActionView" />
+    <item android:id="@+id/action_refresh" android:title="Atualizar" app:showAsAction="ifRoom|withText" />
+    <item android:id="@+id/action_new_category" android:title="Nova categoria" app:showAsAction="never" />
+    <item android:id="@+id/action_open_file" android:title="Abrir EPUB do tablet" app:showAsAction="never" />
+    <item android:id="@+id/action_sign_out" android:title="Sair / trocar de conta" app:showAsAction="never" />
+    <item android:id="@+id/action_update" android:title="Atualizar app" app:showAsAction="never" />
+    <item android:id="@+id/action_about" android:title="Sobre" app:showAsAction="never" />
+</menu>

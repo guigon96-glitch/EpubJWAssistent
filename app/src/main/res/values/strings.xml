@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Leitor de Discursos</string>
+    <string name="sign_in_text">Entre com a mesma conta Google que você usa no programa Criador de EPUB do computador. Os discursos salvos no seu Google Drive vão aparecer aqui e ficar disponíveis mesmo sem internet.</string>
+    <string name="empty_text">Nenhum EPUB ainda — crie no app do PC e salve no Google Drive.\n\nDepois puxe esta tela para baixo para atualizar.</string>
+    <string name="about_text">Leitor de Discursos 1.5\n\nMostra os EPUBs da pasta \"Criador de EPUB\" do seu Google Drive. O app só tem acesso aos arquivos criados pelo Criador de EPUB, nunca aos outros arquivos do seu Drive.\n\nDicas de leitura:\n• Toque numa anotação para ver o texto num balão.\n• Toque no texto para esconder ou mostrar a barra.\n• A posição de leitura de cada discurso é lembrada.</string>
+</resources>
